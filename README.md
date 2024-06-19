@@ -1,8 +1,6 @@
 # Todo App Server
 
-This is a simple Todo application built with Fastify, Kysely, and SQLite. The application provides basic CRUD operations for managing todo items.
-
-## 使用技術
+下記の技術を使用したシンプルな Todo API
 
 - **Web フレームワーク:** Fastify
 - **クエリビルダ:** Kysely
