@@ -1,5 +1,5 @@
 import { Kysely, SqliteDialect } from 'kysely';
-import { DB } from './types';
+import { DB } from '../app/types.ts/types';
 import Database from 'better-sqlite3';
 
 const db = new Database("./prisma/data/dev.db");
