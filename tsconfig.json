@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "listFiles": false, // コンパイルの処理対象を表示しない
+    "noEmit": true, // コンパイル結果の.jsファイルなどを出力しない
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "sourceMap": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "lib": [
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "esnext",
+    "types": [
+      "node",
+    ], // 型はライブラリのものを使わせてもらう
+    "resolveJsonModule": true,
+    "composite": true,
+    "outDir": "dist",
+    "baseUrl": "."
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "./tests/*"
+  ]
+}

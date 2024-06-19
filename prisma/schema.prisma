@@ -1,0 +1,21 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator kysely {
+  provider     = "prisma-kysely"
+  output       = "../app/types.ts"
+  fileName     = "types.ts"
+  enumFileName = "enums.ts"
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  // status    Boolean  @default(false)
+  status    Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
