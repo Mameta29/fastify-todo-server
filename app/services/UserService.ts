@@ -25,6 +25,11 @@ class UserService {
     
     return user as unknown as User | null;
   }
+
+  async getUsers(): Promise<User[]> {
+    const users = await db.selectFrom('User').selectAll().execute();
+    return users as unknown as User[];
+  }
 }
 
 export const userService = new UserService();

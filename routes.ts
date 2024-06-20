@@ -4,6 +4,7 @@ import { TodoController } from './app/controllers/TodoController';
 import { UserController } from './app/controllers/UserController';
 
 export const registerRoutes = (route: FastifyWrapper) => {
+  // Todo routes
   route.get('/todos', TodoController.getTodos);
   route.post('/todos', TodoController.createTodo);
   route.put('/todos/:id', TodoController.updateTodo);
@@ -12,4 +13,5 @@ export const registerRoutes = (route: FastifyWrapper) => {
 
   // User routes
   route.post('/register', UserController.registerUser);
+  route.get('/users', UserController.getUsers);
 };
