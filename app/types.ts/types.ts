@@ -12,6 +12,15 @@ export type Todo = {
     createdAt: Generated<string>;
     updatedAt: string;
 };
+export type User = {
+    id: Generated<number>;
+    username: string;
+    email: string;
+    password: string;
+    createdAt: Generated<string>;
+    updatedAt: string;
+};
 export type DB = {
     Todo: Todo;
+    User: User;
 };
