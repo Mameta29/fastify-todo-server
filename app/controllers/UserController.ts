@@ -13,4 +13,9 @@ export class UserController {
     const user = await userService.createUser(username, email, password);
     reply.send(user);
   }
+
+  static async getUsers(request: FastifyRequest, reply: FastifyReply) {
+    const users = await userService.getUsers();
+    reply.send(users);
+  }
 }
