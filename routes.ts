@@ -1,7 +1,7 @@
-// server/app/http/routes.ts
 import { FastifyWrapper } from './_wrapper';
 import { TodoController } from './app/controllers/TodoController';
 import { UserController } from './app/controllers/UserController';
+import { AuthController } from './app/controllers/AuthController';
 
 export const registerRoutes = (route: FastifyWrapper) => {
   // Todo routes
@@ -14,4 +14,7 @@ export const registerRoutes = (route: FastifyWrapper) => {
   // User routes
   route.post('/register', UserController.registerUser);
   route.get('/users', UserController.getUsers);
+
+  // Auth routes
+  route.post('/login', AuthController.login);
 };

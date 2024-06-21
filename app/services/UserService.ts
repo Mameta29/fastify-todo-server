@@ -30,6 +30,15 @@ class UserService {
     const users = await db.selectFrom('User').selectAll().execute();
     return users as unknown as User[];
   }
+
+  async validateUser(email: string, password: string): Promise<User | null> {
+    const user = await this.findUserByEmail(email);
+    if (!user) {
+      return null;
+    }
+    const isValid = await bcrypt.compare(password, user.password);
+    return isValid ? user : null;
+  }
 }
 
 export const userService = new UserService();

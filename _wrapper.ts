@@ -1,11 +1,14 @@
-// server/_wrapper.ts
 import Fastify, { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import fastifyCookie from '@fastify/cookie';
 
 export class FastifyWrapper {
   private server: FastifyInstance;
 
   constructor() {
     this.server = Fastify();
+    this.server.register(fastifyCookie, {
+      secret: process.env.COOKIE_SECRET || 'secretexample',
+    });
   }
 
   public get(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {

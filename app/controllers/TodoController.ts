@@ -1,4 +1,3 @@
-// server/app/http/controllers/TodoController.ts
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { todoService } from '../services/TodoService';
 
