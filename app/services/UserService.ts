@@ -1,6 +1,6 @@
 import { dbInstance as db } from '../../database';
 import { User } from '../../app/types.ts/types';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 class UserService {
   async createUser(username: string, email: string, password: string): Promise<User> {

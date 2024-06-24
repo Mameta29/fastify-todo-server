@@ -4,7 +4,7 @@
 
 - **Web フレームワーク:** Fastify
 - **クエリビルダ:** Kysely
-- **データベース:** SQLite (Better-SQLite3 を使用)
+- **データベース:** PostgreSQL
 - **ORM/スキーマ管理:** Prisma
 
 ## ローカル立ち上げ
@@ -31,11 +31,39 @@
 
 ### サーバーのローカル起動
 
+#### Redis サーバーの起動
+
+```bash
+redis-server
+```
+
+#### アプリケーションの起動
+
 ```bash
 npm run dev
 ```
 
-`http://localhost:3000`で実行される。
+`http://localhost:3000`で実行されます。
+
+### Docker での立ち上げ
+
+1. Docker コンテナのビルド
+
+   ```bash
+   docker-compose build
+   ```
+
+2. Prisma マイグレーションの実行
+
+   ```bash
+   docker-compose run app npx prisma migrate dev --name init
+   ```
+
+3. Docker コンテナの起動
+
+   ```bash
+   docker-compose up
+   ```
 
 ### API エンドポイント
 
@@ -70,6 +98,30 @@ npm run dev
   ```
 
 - **Todo 削除**
+
   ```bash
   curl -X DELETE http://localhost:3000/todos/:id
+  ```
+
+- **会員登録**
+
+  ```bash
+  curl -X POST http://localhost:3000/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "testuser",
+    "email": "sample@example.com",
+    "password": "password"
+  }'
+  ```
+
+- **ログイン**
+
+  ```bash
+  curl -X POST http://localhost:3000/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "sample@example.com",
+    "password": "password"
+  }'
   ```
