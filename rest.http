@@ -1,4 +1,4 @@
-POST http://localhost:3000/register
+POST http://localhost:8080/register
 Content-Type: application/json;charset=UTF-8
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json;charset=UTF-8
 
 ###
 # @name login
-POST http://localhost:3000/login
+POST http://localhost:8080/login
 Content-Type: application/json;charset=UTF-8
 
 {
@@ -21,6 +21,6 @@ Content-Type: application/json;charset=UTF-8
 @cookie = {{login.response.headers.set-cookie}}
 
 ### 
-GET http://localhost:3000/users
+GET http://localhost:8080/users
 Content-Type: application/json;charset=UTF-8
 Cookie: {{cookie}}

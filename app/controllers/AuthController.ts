@@ -2,9 +2,14 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import { userService } from '../services/UserService';
 import { sessionService } from '../services/SessionService';
 
+type AuthBody = { email: string; password: string };
+
 export class AuthController {
-  static async login(request: FastifyRequest, reply: FastifyReply) {
-    const { email, password } = request.body as { email: string; password: string };
+  static async login(request: FastifyRequest<{Body: AuthBody}>, reply: FastifyReply) {
+  // static async login(request: FastifyRequest, reply: FastifyReply) {
+    // const { email, password } = request.body as { email: string; password: string };
+
+    const { email, password } = request.body;
 
     const user = await userService.validateUser(email, password);
     if (!user) {

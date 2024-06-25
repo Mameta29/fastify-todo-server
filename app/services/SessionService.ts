@@ -28,4 +28,7 @@ class SessionService {
   }
 }
 
+// シングルトンパターンは、クラスのインスタンスが一つだけであることを保証するデザインパターン
+// アプリケーション全体で一貫したデータ管理が可能
+// メモリ効率も向上
 export const sessionService = new SessionService();

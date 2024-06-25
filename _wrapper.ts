@@ -11,23 +11,23 @@ export class FastifyWrapper {
     });
   }
 
-  public get(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
+  public get(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.get(url, handler);
   }
 
-  public post(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
+  public post(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.post(url, handler);
   }
 
-  public put(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
+  public put(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.put(url, handler);
   }
 
-  public patch(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
+  public patch(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.patch(url, handler);
   }
 
-  public delete(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
+  public delete(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.delete(url, handler);
   }
 
