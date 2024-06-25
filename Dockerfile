@@ -17,7 +17,7 @@ COPY . .
 RUN npm rebuild bcrypt --build-from-source
 
 # ポートを開放
-EXPOSE 3000
+EXPOSE 8080
 
 # アプリケーションを起動
 CMD ["npm", "run", "dev"]

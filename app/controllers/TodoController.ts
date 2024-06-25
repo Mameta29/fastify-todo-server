@@ -2,9 +2,9 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import { todoService } from '../services/TodoService';
 
 // 共通の型定義
-export type TodoBody = { title: string; content: string };
-export type TodoParams = { id: number };
-export type TodoStatusBody = { status: boolean };
+type TodoBody = { title: string; content: string };
+type TodoParams = { id: number };
+type TodoStatusBody = { status: boolean };
 
 export class TodoController {
   static async getTodos(request: FastifyRequest, reply: FastifyReply) {
