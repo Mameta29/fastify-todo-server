@@ -1,0 +1,26 @@
+POST http://localhost:8080/register
+Content-Type: application/json;charset=UTF-8
+
+{
+    "username": "medy",
+    "email": "medy@example.com",
+    "password": "password"
+}
+
+###
+# @name login
+POST http://localhost:8080/login
+Content-Type: application/json;charset=UTF-8
+
+{
+    "email": "medy@example.com",
+    "password": "password"
+}
+
+###
+@cookie = {{login.response.headers.set-cookie}}
+
+### 
+GET http://localhost:8080/users
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}

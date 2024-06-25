@@ -1,9 +1,11 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { userService } from '../services/UserService';
 
+type UserBody = { username: string; email: string; password: string };
+
 export class UserController {
-  static async registerUser(request: FastifyRequest, reply: FastifyReply) {
-    const { username, email, password } = request.body as { username: string; email: string; password: string };
+  static async registerUser(request: FastifyRequest<{Body: UserBody}>, reply: FastifyReply) {
+    const { username, email, password } = request.body;
 
     const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {

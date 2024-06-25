@@ -1,9 +1,11 @@
-import { Kysely, SqliteDialect } from 'kysely';
+import { Kysely, PostgresDialect } from 'kysely';
 import { DB } from '../app/types.ts/types';
-import Database from 'better-sqlite3';
+import { Pool } from 'pg';
 
-const db = new Database("./prisma/data/dev.db");
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
-const dialect = new SqliteDialect({ database: db });
+const dialect = new PostgresDialect({ pool });
 
 export const dbInstance = new Kysely<DB>({ dialect });

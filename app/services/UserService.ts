@@ -1,6 +1,6 @@
 import { dbInstance as db } from '../../database';
 import { User } from '../../app/types.ts/types';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 class UserService {
   async createUser(username: string, email: string, password: string): Promise<User> {
@@ -29,6 +29,15 @@ class UserService {
   async getUsers(): Promise<User[]> {
     const users = await db.selectFrom('User').selectAll().execute();
     return users as unknown as User[];
+  }
+
+  async validateUser(email: string, password: string): Promise<User | null> {
+    const user = await this.findUserByEmail(email);
+    if (!user) {
+      return null;
+    }
+    const isValid = await bcrypt.compare(password, user.password);
+    return isValid ? user : null;
   }
 }
 

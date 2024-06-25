@@ -9,16 +9,16 @@ export type Todo = {
     title: string;
     content: string;
     status: Generated<number>;
-    createdAt: Generated<string>;
-    updatedAt: string;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
 };
 export type User = {
     id: Generated<number>;
     username: string;
     email: string;
     password: string;
-    createdAt: Generated<string>;
-    updatedAt: string;
+    createdAt: Generated<Timestamp>;
+    updatedAt: Timestamp;
 };
 export type DB = {
     Todo: Todo;
