@@ -1,3 +1,4 @@
+# ユーザー登録
 POST http://localhost:8080/register
 Content-Type: application/json;charset=UTF-8
 
@@ -8,6 +9,8 @@ Content-Type: application/json;charset=UTF-8
 }
 
 ###
+
+# ログイン
 # @name login
 POST http://localhost:8080/login
 Content-Type: application/json;charset=UTF-8
@@ -18,9 +21,61 @@ Content-Type: application/json;charset=UTF-8
 }
 
 ###
+
+# ログインで取得したCookieを変数に設定
+# @cookie = {{login.response.headers['set-cookie'][0]}}
 @cookie = {{login.response.headers.set-cookie}}
 
-### 
+# ユーザーリスト取得
 GET http://localhost:8080/users
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}
+
+###
+
+# Todoを作成
+POST http://localhost:8080/todos
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}
+
+{
+    "title": "Sample Todo",
+    "content": "This is a sample todo."
+}
+
+###
+
+# Todoリストを取得
+GET http://localhost:8080/todos
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}
+
+###
+
+# Todoを更新
+PUT http://localhost:8080/todos/1
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}
+
+{
+    "title": "Updated Todo",
+    "content": "This is an updated todo."
+}
+
+###
+
+# Todoのステータスを更新
+PATCH http://localhost:8080/todos/1/status
+Content-Type: application/json;charset=UTF-8
+Cookie: {{cookie}}
+
+{
+    "status": "completed"
+}
+
+###
+
+# Todoを削除
+DELETE http://localhost:8080/todos/1
 Content-Type: application/json;charset=UTF-8
 Cookie: {{cookie}}

@@ -21,7 +21,7 @@
       "node",
     ], // 型はライブラリのものを使わせてもらう
     "resolveJsonModule": true,
-    "composite": true,
+    // "composite": true,
     "outDir": "dist",
     "baseUrl": ".",
     "typeRoots": [
@@ -30,8 +30,9 @@
     ]
   },
   "include": [
-    "./**/*.ts",
-    "./src/**/*.ts" 
+    "./app/**/*.ts",
+    "./src/**/*.ts",
+    "./global.d.ts",
   ],
   "exclude": [
     "node_modules",
