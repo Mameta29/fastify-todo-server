@@ -11,6 +11,16 @@ export class FastifyWrapper {
     });
   }
 
+  middleware(path: string, httpMethodList: string[], callBack: any, args: any) {
+    const regex = new RegExp(path);
+    // prismaにlogIdを渡す前に実行する
+    this.server.addHook("preValidation", async (request, reply) => {
+      if (request.url.match(regex) && httpMethodList.includes(request.method)) {
+        await callBack(request, reply, args);
+      }
+    });
+  }
+
   public get(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
     this.server.get(url, handler);
   }

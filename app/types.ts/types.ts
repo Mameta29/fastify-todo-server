@@ -11,6 +11,7 @@ export type Todo = {
     status: Generated<number>;
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
+    userId: number;
 };
 export type User = {
     id: Generated<number>;
