@@ -2,3 +2,6 @@ node_modules
 # Keep environment variables out of version control
 .env
 dist/
+
+# Store for pnpm's content-addressable storage
+.pnpm-store/
