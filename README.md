@@ -45,7 +45,7 @@ npm run dev
 
 `http://localhost:8080`で実行されます。
 
-### Docker での立ち上げ
+## Docker での立ち上げ
 
 1. Docker コンテナのビルド
 
@@ -53,17 +53,24 @@ npm run dev
    docker-compose build
    ```
 
-2. Prisma マイグレーションの実行
+2. Docker コンテナの起動
+
+   ```bash
+   docker-compose up
+   ```
+
+3. Prisma マイグレーションの実行
 
    ```bash
    docker-compose run app npx prisma migrate dev --name init
    ```
 
-3. Docker コンテナの起動
-
+4. プロジェクト立ち上げ
    ```bash
-   docker-compose up
+   npm install
+   npm run dev
    ```
+
 
 ### API エンドポイント
 
