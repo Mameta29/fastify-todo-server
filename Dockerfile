@@ -4,15 +4,26 @@ FROM node:18
 # 作業ディレクトリを作成
 WORKDIR /app
 
-# apt updateすることが必要（debianだから）
-RUN apt update
+# パッケージリストを更新し、必要なパッケージをインストール
+RUN apt update && apt upgrade -y
+RUN apt install -y \
+      curl \
+      wget \
+      git \
+      locales
 
-RUN apt upgrade -y
+# bashで日本語が表示されるようにする
+RUN localedef -f UTF-8 -i ja_JP ja_JP
+RUN echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
 
-# パッケージファイルをコピー
+# pnpmのインストール
+RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
+
+    
+# # パッケージファイルをコピー
 # COPY package*.json ./
 
-# 依存関係をインストール
+# # 依存関係をインストール
 # RUN npm install
 
 # # アプリケーションコードをコピー
