@@ -30,9 +30,11 @@
     ]
   },
   "include": [
+    "./**/*.ts",
     "./app/**/*.ts",
     "./src/**/*.ts",
     "./global.d.ts",
+    "eslint.config.mjs",
   ],
   "exclude": [
     "node_modules",

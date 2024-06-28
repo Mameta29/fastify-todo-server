@@ -11,33 +11,38 @@ export class FastifyWrapper {
     });
   }
 
-  middleware(path: string, httpMethodList: string[], callBack: any, args: any) {
+  middleware<T>(
+    path: string,
+    httpMethodList: string[],
+    callBack: (request: FastifyRequest, reply: FastifyReply, args: T) => Promise<void>,
+    args: T
+  ) {
     const regex = new RegExp(path);
     // prismaにlogIdを渡す前に実行する
-    this.server.addHook("preValidation", async (request, reply) => {
+    this.server.addHook('preValidation', async (request, reply) => {
       if (request.url.match(regex) && httpMethodList.includes(request.method)) {
         await callBack(request, reply, args);
       }
     });
   }
 
-  public get(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
+  public get(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
     this.server.get(url, handler);
   }
 
-  public post(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
+  public post(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
     this.server.post(url, handler);
   }
 
-  public put(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
+  public put(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
     this.server.put(url, handler);
   }
 
-  public patch(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
+  public patch(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
     this.server.patch(url, handler);
   }
 
-  public delete(url: string, handler: (request: FastifyRequest<any>, reply: FastifyReply) => void): void {
+  public delete(url: string, handler: (request: FastifyRequest, reply: FastifyReply) => void): void {
     this.server.delete(url, handler);
   }
 
