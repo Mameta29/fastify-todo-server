@@ -79,3 +79,9 @@ Cookie: {{cookie}}
 DELETE http://localhost:8080/todos/1
 Content-Type: application/json;charset=UTF-8
 Cookie: {{cookie}}
+
+###
+
+# ログアウト
+POST http://localhost:8080/logout
+Cookie: {{cookie}}
