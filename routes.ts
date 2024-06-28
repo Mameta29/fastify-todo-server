@@ -19,4 +19,5 @@ export const registerRoutes = (route: FastifyWrapper) => {
 
   // Auth routes
   route.post('/login', AuthController.login);
+  route.post('/logout', AuthController.logout);
 };

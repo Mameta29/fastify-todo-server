@@ -28,6 +28,10 @@ class SessionService {
       updatedAt: sessionData.updatedAt,
     };
   }
+
+  async deleteSession(sessionId: string): Promise<void> {
+    await redis.del(sessionId);
+  }
 }
 
 // シングルトンパターンは、クラスのインスタンスが一つだけであることを保証するデザインパターン

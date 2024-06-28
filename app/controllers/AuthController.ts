@@ -26,4 +26,15 @@ export class AuthController {
     reply.setCookie("sessionId", sessionId, { httpOnly: true, path: "/" });
     reply.send({ message: "ログインに成功しました。" });
   }
+
+  static async logout(request: FastifyRequest, reply: FastifyReply) {
+    const { sessionId } = request.cookies;
+    if (!sessionId) {
+      return reply.code(400).send({ message: "ログインしていません。" });
+    }
+
+    await sessionService.deleteSession(sessionId);
+    reply.clearCookie("sessionId", { path: "/" });
+    reply.send({ message: "ログアウトに成功しました。" });
+  }
 }
