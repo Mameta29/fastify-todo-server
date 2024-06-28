@@ -1,5 +1,5 @@
 // server/app/config/env.ts
-import { config } from 'dotenv';
+import { config } from "dotenv";
 
 config();
 
