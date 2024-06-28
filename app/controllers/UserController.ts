@@ -1,15 +1,20 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { userService } from '../services/UserService';
+import { FastifyRequest, FastifyReply } from "fastify";
+import { userService } from "../services/UserService";
 
 type UserBody = { username: string; email: string; password: string };
 
 export class UserController {
-  static async registerUser(request: FastifyRequest<{Body: UserBody}>, reply: FastifyReply) {
+  static async registerUser(
+    request: FastifyRequest<{ Body: UserBody }>,
+    reply: FastifyReply,
+  ) {
     const { username, email, password } = request.body;
 
     const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {
-      return reply.code(400).send({ message: 'メールアドレスは既に登録されています。' });
+      return reply
+        .code(400)
+        .send({ message: "メールアドレスは既に登録されています。" });
     }
 
     const user = await userService.createUser(username, email, password);
