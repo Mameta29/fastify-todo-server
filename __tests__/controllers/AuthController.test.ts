@@ -1,11 +1,11 @@
 import { FastifyRequest, FastifyReply, RouteGenericInterface } from "fastify";
-import { AuthController } from "../app/controllers/AuthController";
-import { userService } from "../app/services/UserService";
-import { sessionService } from "../app/services/SessionService";
-import redis from "../redis"; // 実際のredisインスタンスをインポート
+import { AuthController } from "../../app/controllers/AuthController";
+import { userService } from "../../app/services/UserService";
+import { sessionService } from "../../app/services/SessionService";
+import redis from "../../redis"; // 実際のredisインスタンスをインポート
 
-jest.mock("../app/services/UserService");
-jest.mock("../app/services/SessionService");
+jest.mock("../../app/services/UserService");
+jest.mock("../../app/services/SessionService");
 
 interface MockRequestBody {
   Body: {
