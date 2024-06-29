@@ -10,7 +10,8 @@
     "start": "node dist/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"{src,app}/**/*.{js,ts,tsx,json,css,md}\""
+    "format": "prettier --write \"{src,app}/**/*.{js,ts,tsx,json,css,md}\"",
+    "seed": "ts-node-dev ./seeders/seed.ts"
   },
   "keywords": [],
   "author": "",
