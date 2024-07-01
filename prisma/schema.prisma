@@ -14,18 +14,6 @@ generator kysely {
   fileName     = "types.ts"
   enumFileName = "enums.ts"
 }
-
-model Todo {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  // status    Boolean  @default(false)
-  status    Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    Int
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   username  String
@@ -33,4 +21,16 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  todos     Todo[]   // Userが持つTodoを表すリレーションフィールド
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  status    Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
