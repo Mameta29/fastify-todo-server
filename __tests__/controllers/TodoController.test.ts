@@ -1,7 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { TodoController } from "../../app/controllers/TodoController";
 import { todoService } from "../../app/services/TodoService";
-import { TodoBody, TodoParams, TodoStatusBody } from "../../src/types";
 
 jest.mock("../../app/services/TodoService");
 
@@ -9,7 +8,6 @@ interface MockRequestBody {
   Body: {
     title: string;  // 必須プロパティに変更
     content: string; // 必須プロパティに変更
-    status?: boolean;
   };
   Params: {
     id: number;
@@ -58,7 +56,7 @@ describe("TodoController", () => {
   });
 
   describe("getTodos", () => {
-    it("should return 401 if user is not logged in", async () => {
+    it("未ログインの場合、 401 エラー", async () => {
       request.user = undefined;
 
       await TodoController.getTodos(request, reply);
@@ -67,7 +65,7 @@ describe("TodoController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインが必要です。" });
     });
 
-    it("should return todos for the logged-in user", async () => {
+    it("正常系", async () => {
       const todos = [{ id: 1, title: "Test Todo", content: "Test Content" }];
       todoService.getTodosByUserId = jest.fn().mockResolvedValue(todos);
 
@@ -78,7 +76,7 @@ describe("TodoController", () => {
   });
 
   describe("createTodo", () => {
-    it("should return 401 if user is not logged in", async () => {
+    it("未ログインの場合、 401 エラー", async () => {
       request.user = undefined;
 
       await TodoController.createTodo(request, reply);
@@ -87,7 +85,7 @@ describe("TodoController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインが必要です。" });
     });
 
-    it("should create a new todo for the logged-in user", async () => {
+    it("正常系", async () => {
       const newTodo = { id: 1, title: "New Todo", content: "New Content" };
       todoService.createTodo = jest.fn().mockResolvedValue(newTodo);
       request.body = { title: "New Todo", content: "New Content" };
@@ -99,7 +97,7 @@ describe("TodoController", () => {
   });
 
   describe("updateTodo", () => {
-    it("should return 401 if user is not logged in", async () => {
+    it("未ログインの場合、 401 エラー", async () => {
       request.user = undefined;
 
       await TodoController.updateTodo(request, reply);
@@ -108,7 +106,7 @@ describe("TodoController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインが必要です。" });
     });
 
-    it("should update an existing todo for the logged-in user", async () => {
+    it("正常系", async () => {
       const updatedTodo = { id: 1, title: "Updated Todo", content: "Updated Content" };
       todoService.updateTodo = jest.fn().mockResolvedValue(updatedTodo);
       request.body = { title: "Updated Todo", content: "Updated Content" };
@@ -120,7 +118,7 @@ describe("TodoController", () => {
   });
 
   describe("updateTodoStatus", () => {
-    it("should return 401 if user is not logged in", async () => {
+    it("未ログインの場合、 401 エラー", async () => {
       statusRequest.user = undefined;
 
       await TodoController.updateTodoStatus(statusRequest, reply);
@@ -129,7 +127,7 @@ describe("TodoController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインが必要です。" });
     });
 
-    it("should update the status of an existing todo for the logged-in user", async () => {
+    it("正常系", async () => {
       const updatedTodo = { id: 1, title: "Test Todo", content: "Test Content", status: true };
       todoService.updateTodoStatus = jest.fn().mockResolvedValue(updatedTodo);
       statusRequest.body = { status: true };
@@ -141,7 +139,7 @@ describe("TodoController", () => {
   });
 
   describe("deleteTodo", () => {
-    it("should return 401 if user is not logged in", async () => {
+    it("未ログインの場合、 401 エラー", async () => {
       request.user = undefined;
 
       await TodoController.deleteTodo(request, reply);
@@ -150,7 +148,7 @@ describe("TodoController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインが必要です。" });
     });
 
-    it("should delete an existing todo for the logged-in user", async () => {
+    it("正常系", async () => {
       todoService.deleteTodo = jest.fn().mockResolvedValue(undefined);
 
       await TodoController.deleteTodo(request, reply);

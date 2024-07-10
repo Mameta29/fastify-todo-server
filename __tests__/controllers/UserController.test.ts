@@ -34,7 +34,7 @@ describe("UserController", () => {
   });
 
   describe("registerUser", () => {
-    it("should return 400 if the email is already registered", async () => {
+    it("すでに登録しているメールアドレスの場合、400 エラー", async () => {
       userService.findUserByEmail = jest.fn().mockResolvedValue({ id: 1 });
       userService.createUser = jest.fn();
 
@@ -45,7 +45,7 @@ describe("UserController", () => {
       expect(userService.createUser).not.toHaveBeenCalled();
     });
 
-    it("should create a new user if the email is not registered", async () => {
+    it("正常系", async () => {
       const newUser = { id: 1, username: "testuser", email: "test@example.com" };
       userService.findUserByEmail = jest.fn().mockResolvedValue(null);
       userService.createUser = jest.fn().mockResolvedValue(newUser);
@@ -57,7 +57,7 @@ describe("UserController", () => {
   });
 
   describe("getUsers", () => {
-    it("should return a list of users", async () => {
+    it("正常系", async () => {
       const users = [
         { id: 1, username: "user1", email: "user1@example.com" },
         { id: 2, username: "user2", email: "user2@example.com" }

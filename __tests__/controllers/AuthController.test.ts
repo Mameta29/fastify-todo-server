@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply, RouteGenericInterface } from "fastify";
 import { AuthController } from "../../app/controllers/AuthController";
 import { userService } from "../../app/services/UserService";
 import { sessionService } from "../../app/services/SessionService";
-import redis from "../../redis"; // 実際のredisインスタンスをインポート
+import redis from "../../redis";
 
 jest.mock("../../app/services/UserService");
 jest.mock("../../app/services/SessionService");
@@ -39,7 +39,7 @@ describe("AuthController", () => {
   });
 
   describe("login", () => {
-    it("should return 401 if user validation fails", async () => {
+    it("認証に失敗した場合 401 エラーコードで返る", async () => {
       userService.validateUser = jest.fn().mockResolvedValue(null);
 
       request.body = { email: "test@example.com", password: "wrongpassword" };
@@ -50,7 +50,7 @@ describe("AuthController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "認証に失敗しました。" });
     });
 
-    it("should set sessionId cookie and return success message on successful login", async () => {
+    it("正常系", async () => {
       userService.validateUser = jest.fn().mockResolvedValue({ id: 1 });
       sessionService.createSession = jest.fn().mockResolvedValue("session-id");
 
@@ -64,7 +64,7 @@ describe("AuthController", () => {
   });
 
   describe("logout", () => {
-    it("should return 400 if sessionId cookie is not present", async () => {
+    it("クッキーにセッションIDがなければ 400 エラーコードで返る", async () => {
       request.cookies = {};
 
       await AuthController.logout(request, reply);
@@ -73,7 +73,7 @@ describe("AuthController", () => {
       expect(reply.send).toHaveBeenCalledWith({ message: "ログインしていません。" });
     });
 
-    it("should clear sessionId cookie and return success message on successful logout", async () => {
+    it("正常系", async () => {
       request.cookies = { sessionId: "session-id" };
 
       sessionService.deleteSession = jest.fn().mockResolvedValue(undefined);
