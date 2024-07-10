@@ -97,7 +97,7 @@ describe("TodoService", () => {
   });
 
   describe("updateTodo", () => {
-    it("should update an existing todo and return it", async () => {
+    it("正常系", async () => {
       const now = new Date().toISOString();
       const updatedTodo: Todo = {
         id: 1 as any,
@@ -146,7 +146,7 @@ describe("TodoService", () => {
   });
 
   describe("updateTodoStatus", () => {
-    it("should update the status of an existing todo and return it", async () => {
+    it("正常系", async () => {
       const now = new Date().toISOString();
       const updatedTodo: Todo = {
         id: 1 as any,
@@ -193,7 +193,7 @@ describe("TodoService", () => {
   });
 
   describe("deleteTodo", () => {
-    it("should delete an existing todo", async () => {
+    it("正常系", async () => {
       (db.deleteFrom as jest.Mock).mockReturnValue({
         where: jest.fn().mockReturnThis(),
         execute: jest.fn().mockResolvedValue(undefined),
