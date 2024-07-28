@@ -19,6 +19,7 @@
     "target": "esnext",
     "types": [
       "node",
+      "jest"
     ], // 型はライブラリのものを使わせてもらう
     "resolveJsonModule": true,
     // "composite": true,

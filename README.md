@@ -50,19 +50,19 @@ npm run dev
 1. Docker コンテナのビルド
 
    ```bash
-   docker-compose build
+   docker compose build
    ```
 
 2. Docker コンテナの起動
 
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
 3. Prisma マイグレーションの実行
 
    ```bash
-   docker-compose run app npx prisma migrate dev --name init
+   docker compose run app npx prisma migrate dev --name init
    ```
 
 4. プロジェクト立ち上げ
